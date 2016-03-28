@@ -1,4 +1,4 @@
-//Dependencies
+// Dependencies
 var express = require('express'),
   bodyParser = require('body-parser');
 
@@ -10,6 +10,6 @@ app.use(bodyParser.json());
 // Routes
 app.use('/api', require('./routes/api'));
 
-// Server, port >= 1024 
+// Server, port >= 1024
 app.listen(3000);
-console.log('Starting RESTful Search Aggregator(Google, Bing, Yahoo)');
+console.log('RESTful Search Aggregator(Google, Bing, Yahoo)');
