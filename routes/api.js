@@ -50,7 +50,7 @@ router.post('/search', function(req, res, next) {
 	      'User-Agent': 'Mozilla/5.0'
       }
     }, function(err, res, body) {
-	    if (err)
+      if (err)
         return log("Something went wrong: %s", err);
       // cheerio, allows for jquery-like DOM Tree parsing
       var $ = cheerio.load(body),
@@ -62,7 +62,7 @@ router.post('/search', function(req, res, next) {
       $(DOMRoot[i]).find(hrefLeaf[i]).each(function (index, element) {
         var url = $(element).attr('href').replace('/url?q=', '').split('&')[0];
         // Yahoo has ugly URLs //
-	      if (url.indexOf("search.yahoo.com") > -1 ) {
+	if (url.indexOf("search.yahoo.com") > -1 ) {
           url.split('/').forEach(function(field) {
             if (field.startsWith('RU='))
               url = unescape(field.split('=')[1]);
