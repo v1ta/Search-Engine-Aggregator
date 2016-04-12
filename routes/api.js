@@ -44,6 +44,12 @@ router.post('/search', function(req, res, next) {
   defer.promise.then(callback, res.end);
   urls.forEach(function(url, i) {
     url += URL.parse(req.url).query;
+    /*
+        Catch query paramater here and alter for each different engine
+        &start=<page numbers> -- google
+        &first=<1,15,29,etc...> -- bing
+        & something -- yahoo
+    */
     request({
       url: url,
       headers: {
@@ -68,7 +74,7 @@ router.post('/search', function(req, res, next) {
               url = unescape(field.split('=')[1]);
           });
         }
-        // yahoo puts images as their first result in all queries 
+        // yahoo puts images as their first result in all queries
         if (url.charAt(0) !== '/' && !(i==2 && index==0)) {
           hrefs.push(url);
           title.push($(element).text());
@@ -100,6 +106,8 @@ router.post('/search', function(req, res, next) {
     });
   });
 });
+
+
 
 // export
 module.exports = router;
